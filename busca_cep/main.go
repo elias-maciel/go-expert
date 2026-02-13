@@ -50,19 +50,19 @@ func BuscaCepHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func BuscaCep(cep string) (*ViaCEP, error) {
-	resp, error := http.Get("https://viacep.com.br/ws/" + cep + "/json/")
-	if error != nil {
-		return nil, error
+	resp, err := http.Get("https://viacep.com.br/ws/" + cep + "/json/")
+	if err != nil {
+		return nil, err
 	}
 	defer resp.Body.Close()
-	body, error := ioutil.ReadAll(resp.Body)
-	if error != nil {
-		return nil, error
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
 	}
 	var c ViaCEP
-	error = json.Unmarshal(body, &c)
-	if error != nil {
-		return nil, error
+	err = json.Unmarshal(body, &c)
+	if err != nil {
+		return nil, err
 	}
 	return &c, nil
 }
