@@ -15,10 +15,12 @@
     </thead>
     <tbody>
     {{ range .}}
-    <tr>
-        <td>{{ .Nome }}</td>
-        <td>{{ .CargaHoraria }}</td>
-    </tr>
+        {{ if eq .CargaHoraria 40}}
+            <tr>
+                <td>{{ .Nome }}</td>
+                <td>{{ .CargaHoraria }}</td>
+            </tr>
+        {{ end }}
     {{ end }}
     </tbody>
 </table>
